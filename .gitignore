@@ -1,6 +1,5 @@
 HELP.md
 ConnectUs/target/
-ConnectUs/src/main/resources
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

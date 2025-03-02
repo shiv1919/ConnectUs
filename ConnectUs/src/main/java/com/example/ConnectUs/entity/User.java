@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,12 +26,12 @@ public class User {
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    private String firstname;
 
     @NotNull
     @Column(name = "email")
     @Email
-    private String email;
+    private String useremail;
 
     @NotNull
     @Column(name = "last_name")
@@ -38,4 +40,9 @@ public class User {
     @NotNull
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    Set<Follow> following;
+    @OneToMany(mappedBy = "following",cascade = CascadeType.ALL)
+    Set<Follow> followers;
 }

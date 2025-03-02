@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserJwtResponseDto {
+public class UserResponseDto {
     private int id;
-    private String fullName;
-    private String email;
+    private String firstname;
+    private String lastName;
+    private String useremail;
 }

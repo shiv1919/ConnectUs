@@ -43,9 +43,9 @@ public class AuthController {
 
             String token = jwtUtil.generateToken(
                     loginRequestDto.getEmail(),
-                    userRepository.findByEmail(loginRequestDto.getEmail()).getId(),
-                    userRepository.findByEmail(loginRequestDto.getEmail()).getName() + " " +
-                            userRepository.findByEmail(loginRequestDto.getEmail()).getLastName()
+                    userRepository.findByUseremail(loginRequestDto.getEmail()).getId(),
+                    userRepository.findByUseremail(loginRequestDto.getEmail()).getFirstname() + " " +
+                            userRepository.findByUseremail(loginRequestDto.getEmail()).getLastName()
             );
 
             return ResponseEntity.ok(Map.of("token", token));
@@ -57,21 +57,21 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<Map<String, Object>> register(@RequestBody RegisterRequestDto registerRequestDto){
         try {
-            if (userRepository.findByEmail(registerRequestDto.getEmail()) != null) {
+            if (userRepository.findByUseremail(registerRequestDto.getUseremail()) != null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body(Map.of("error", "Email already exists"));
             }
             User user = new User();
-            user.setEmail(registerRequestDto.getEmail());
-            user.setName(registerRequestDto.getName());
+            user.setUseremail(registerRequestDto.getUseremail());
+            user.setFirstname(registerRequestDto.getFirstname());
             user.setLastName(registerRequestDto.getLastName());
             user.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
 
             userRepository.save(user);
             String token = jwtUtil.generateToken(
-                    user.getEmail(),
+                    user.getUseremail(),
                     user.getId(),
-                    user.getName() + " " + user.getLastName()
+                    user.getFirstname() + " " + user.getLastName()
             );
             return ResponseEntity.ok(Map.of(
                     "message", "Registration successful",
