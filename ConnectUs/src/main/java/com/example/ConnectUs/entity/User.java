@@ -45,4 +45,6 @@ public class User {
     Set<Follow> following;
     @OneToMany(mappedBy = "following",cascade = CascadeType.ALL)
     Set<Follow> followers;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    Set<UserProfileImage> images;
 }

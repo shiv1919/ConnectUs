@@ -50,4 +50,7 @@ public class UserService {
     public void delete(int id){
         userRepository.deleteById(id);
     }
+    public User findById(int id){
+        return userRepository.findById(id).get();
+    }
 }
