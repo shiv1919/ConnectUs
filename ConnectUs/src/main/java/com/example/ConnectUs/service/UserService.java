@@ -1,6 +1,7 @@
 package com.example.ConnectUs.service;
 
 import com.example.ConnectUs.dto.request.UserAddRequestDto;
+import com.example.ConnectUs.dto.response.user.UserFollowingResponseDto;
 import com.example.ConnectUs.dto.response.user.UserResponseDto;
 import com.example.ConnectUs.entity.Follow;
 import com.example.ConnectUs.entity.User;
@@ -53,4 +54,10 @@ public class UserService {
     public User findById(int id){
         return userRepository.findById(id).get();
     }
+
+    public List<UserFollowingResponseDto> getUserFollowing(int userId) {
+        List<Follow> follows = followRepository.findAllByUser_Id(userId);
+        return userMapper.followsToUserFollowingResponseDto(follows);
+    }
+
 }
