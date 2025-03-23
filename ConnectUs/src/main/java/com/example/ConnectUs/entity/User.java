@@ -47,4 +47,8 @@ public class User {
     Set<Follow> followers;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     Set<UserProfileImage> images;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    Set<Post> posts;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    Set<Like> likes;
 }

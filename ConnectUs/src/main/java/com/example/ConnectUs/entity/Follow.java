@@ -18,12 +18,12 @@ public class Follow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "user_following_id")
-    User following;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_following_id", nullable = false)
+    private User following;
 }
