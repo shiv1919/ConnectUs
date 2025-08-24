@@ -51,4 +51,6 @@ public class User {
     Set<Post> posts;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     Set<Like> likes;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    Set<Comment>comments;
 }

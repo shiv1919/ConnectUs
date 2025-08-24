@@ -27,5 +27,6 @@ public class Post {
     Set<PostImage> postImages;
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
     Set<Like> likes;
-
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+    Set<Comment> comments;
 }
